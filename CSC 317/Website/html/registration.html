@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta chartset="UTF-8">
+	<!--
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	-->
+	<link rel="stylesheet" href="../css/Registration-style.css" />
+	<link rel="stylesheet" href="../bootstrap-3.3.5-dist/css/bootstrap.css" />
+	<!--Webpage Title-->
+	<title>Registration</title>
+		<script defer type="text/javascript" src="../js/registration.js"></script>
+</head>
+<body>
+	<!--Creates a form block-->
+	<div class="Registration-box">
+			<h1>Registration</h1>
+			<p>To create a new account, please enter the following</p>
+			<form>
+			<p>Username</p>
+			<label for="uname">User Name</label>
+			<input type="username" id="uname"required placeholder="Username" name="username" >
+			
+			<!--<p>Email</p>-->
+			<label for="email">Email</label>
+			<input type="email" id="email" required placeholder="Email" name="email" >
+			<!--
+			<p>Confirm Email</p>
+			<input type="email" id="email" required placeholder="Email" name="" >
+			-->
+
+			<!--<p>Password</p>-->
+			<label for="psw">Password</label>
+			<input type="password" id="psw" placeholder="Password" name="inputpsw">
+			<!--<p>Confirm Password</p>-->
+			<label for="cpsw">Password</label>
+			<input type="password" id="cpsw" placeholder="Confirm Password" name="inputcpsw" >
+			
+			<!-- <input type="checkbox" id="agreement" name="ofage" value="old">I am 13+ years of age<br> -->
+
+			<p>By registering, you are agreeing that you are 13+ years of age, if yes then click register.</p>
+			
+			<!-- 	
+			<input type="checkbox" id="checkage" required>
+   			<label for="checkage">I accept I am 13+ years of age.</label><br />
+
+    			<input type="checkbox" id="prules" required>
+    			<label for="prules">I accept TOS and Privacy rules.</label><br />
+ 			-->
+
+			<!--
+				<div class='nav nav-pills'>
+				<p><a href="login.html">Cancel</a></p>
+				<p><a href="Imagepost.html">Registrate</a></p>
+			-->
+				<div class='nav nav-pills'>
+				<p><a href="login.html">
+				<button type="cancel"> Cancel</button>
+				</a>
+				<a href="Imagepost.html">
+				<button type="submit"> Submit</button>
+				</a></p>
+			
+			</div>
+			</form>
+	</div>
+</body>
+</html>
