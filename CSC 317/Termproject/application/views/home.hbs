@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!--
+	<meta chartset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	-->
+	<link rel="stylesheet" href="../public/css/Imageposted-style.css" />
+	<link rel="stylesheet" href="../public/bootstrap-3.3.5-dist/css/bootstrap.css" />
+	<!--Webpage Title-->
+	<title>Posted Image</title>
+	<script defer type="text/javascript" src="../routes/home.js"></script>
+</head>
+<body>
+	<!--Creates a container-->
+	<div class="home" id="home">
+		<h1>Posted Images</h1>
+		<div class="list" id="list">
+
+
+		</div>
+	</div>
+	<div class="buttons">
+		<div class='nav nav-pills'>
+			<p>
+				<!--<a href="login.html"><button type="logout"> Log Out </button></a>-->
+				{{#if logged}}
+				<a href="/users/index" id="authenticate-button" class="nav-items anchor buttons"><button type="logout"> Log In </button></a>
+				{{else}}
+				<a href="/users/index" id="authenticate-button" class="nav-items anchor buttons"><button type="login"> Log Out </button></a>
+				{{/if}}
+
+				<a href="postimage.html"><button type="postimage"> Post Image </button></a>
+			</p>
+		</div>
+	</div>
+	</body>
+	</html>
