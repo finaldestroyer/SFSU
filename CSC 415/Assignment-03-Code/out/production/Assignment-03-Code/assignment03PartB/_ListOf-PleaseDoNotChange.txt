@@ -1,0 +1,7 @@
+
+Please DO NOT CHANGE these files:
+
+1. StackInterface.java
+2. PalindromeChecker.java
+    - Do not change the "main" method.
+    - Please ADD CODE to complete implementing the program.
