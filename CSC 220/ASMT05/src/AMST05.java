@@ -28,8 +28,9 @@ public class AMST05 {
             found = false;
             System.out.println("Search :");
             searcher = myObj.nextLine();
+            searcher = searcher.toLowerCase();
             System.out.println("    |");
-            if (searcher .equals("!q")) {
+            if (searcher.equals("!q")) {
                 System.out.println("-----THANK YOU-----");
                 return;
             }
