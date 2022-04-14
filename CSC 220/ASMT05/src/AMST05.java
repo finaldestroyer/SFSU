@@ -28,21 +28,11 @@ public class AMST05 {
             found = false;
             System.out.println("Search :");
             searcher = myObj.nextLine();
-            searcher = searcher.toLowerCase();
             System.out.println("    |");
-            if (searcher.equals("!q")) {
+            if (searcher .equals("!q")) {
                 System.out.println("-----THANK YOU-----");
                 return;
             }
-            /*
-            for (String word : Dict.keySet()) {
-                if (searcher.equals(String.valueOf(word))) {
-                    System.out.println("    |");
-                    System.out.println("    " + word + ": " + Dict.get(word));
-                    found = true;
-                }
-            }
-            */
             for (Map.Entry<String, String> word: Dict.entries()) {
                 if (searcher.equals(word.getKey())) {
                     System.out.println(word.getKey() + ": " + word.getValue());
