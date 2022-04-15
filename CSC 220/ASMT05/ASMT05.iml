@@ -11,7 +11,7 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Documents/GitHub/guava-31.1-jre.jar!/" />
+          <root url="jar://$MODULE_DIR$/../ASMT06/guava-31.1-jre.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

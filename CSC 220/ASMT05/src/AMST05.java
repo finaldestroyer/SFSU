@@ -1,6 +1,7 @@
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ListMultimap;
 
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Vector;
 import java.util.Scanner;
@@ -11,41 +12,71 @@ public class AMST05 {
         Program();
     }
     public static void Program(){
-        //ListMultimap<String, Vector<String>> Dictionary = ArrayListMultimap.create();
-        ListMultimap<String, String> Dictionary = ArrayListMultimap.create();
+
+        //<Word,Speech,Definition>
+        ListMultimap<String,ListMultimap <String,String>> Dictionary = ArrayListMultimap.create();
         addDictionary(Dictionary);
         //iterate(Dictionary);
+        System.out.println("- DICTIONARY 220 JAVA Standard -----");
+        System.out.println("----- powered by Google Guava -");
         Search(Dictionary);
     }
 
-    public static <Dict> void Search(ListMultimap<String, String> Dict){
+    public static <Dict> void Search(ListMultimap<String,ListMultimap<String, String>> Dict) {
         String searcher = null;
         boolean found = false;
+        String[] arrOfStr = null;
         Scanner myObj = new Scanner(System.in);
-        System.out.println("- DICTIONARY 220 JAVA Standard -----");
-        System.out.println("----- powered by Google Guava -");
-        while(searcher != "!q") {
+        while (searcher != "!q") {
+            arrOfStr = null;
             found = false;
             System.out.println("Search :");
-            searcher = myObj.nextLine();
-            System.out.println("    |");
-            if (searcher .equals("!q")) {
+            searcher = myObj.next();
+            searcher = searcher.toLowerCase();
+            if( searcher == "" || searcher == " " ){
+                continue;
+            }
+            if (searcher.equals("!q")) {
                 System.out.println("-----THANK YOU-----");
                 return;
             }
-            for (Map.Entry<String, String> word: Dict.entries()) {
-                if (searcher.equals(word.getKey())) {
-                    System.out.println(word.getKey() + ": " + word.getValue());
+
+            String[] parts = searcher.split("\\s");
+            System.out.println("    |");
+            for (Map.Entry<String, ListMultimap<String, String>> word : Dict.entries()) {
+                //System.out.println(word.getKey());
+                switch (arrOfStr.length) {
+                    case 1:
+                        if (arrOfStr[0].equals(word.getKey())) {
+                            //System.out.print(word + word.getKey() + word.getValue());
+                            for(Map.Entry<String,String> speech: word.getValue().entries()){
+                                System.out.println(word.getKey() + " [" + speech.getKey() + "] : " + speech.getValue());
+                            }
+                            found = true;
+                        }
+                        break;
+                    case 2:
+                        if (arrOfStr[0].equals(word.getKey())) {
+                            for(Map.Entry<String,String> speech: word.getValue().entries()){
+                                if (arrOfStr[1].equals( speech.getKey() ) ){
+                                    System.out.println(word.getKey() + " [" + speech.getKey() + "] : " + speech.getValue());
+                                    found = true;
+                                }
+                            }
+                        }
+                        break;
                 }
-                found = true;
             }
-            if(found == false) {
+
+            if (found == false) {
                 System.out.println("<Not found>");
             }
             System.out.println("    |");
         }
     }
-    public static String printDef(ListMultimap<String, String> Dict){
+
+
+    public static String printDef(ListMultimap<String,ListMultimap<String, String>> Dict){
         return null;
     }
     public static<K, V> void iterate(ListMultimap<K, V> multimap)
@@ -58,33 +89,23 @@ public class AMST05 {
     public enum Dictionary {
         book, bookable, bookbinder, bookcase, CSC220
     }
-    public static ListMultimap<String, String> addDictionary(ListMultimap<String, String> Dict){
+    public static ListMultimap<String,ListMultimap<String, String>> addDictionary(ListMultimap<String,ListMultimap<String, String>> Dict){
         addWords();
         for (Dictionary word : Dictionary.values()) {
             if(String.valueOf(word).equals("book")) {
-                for (String def : wordBook) {
-                    Dict.put(String.valueOf(word), def);
-                }
+                Dict.put(String.valueOf(word), wordBook);
             }
             if(String.valueOf(word).equals("bookable")){
-                for (String def : wordBookable) {
-                    Dict.put(String.valueOf(word), def);
-                }
+                Dict.put(String.valueOf(word), wordBookable);
             }
             if(String.valueOf(word).equals("bookbinder")){
-                for (String def : wordBook) {
-                    Dict.put(String.valueOf(word), def);
-                }
+                Dict.put(String.valueOf(word), wordBookbinder);
             }
             if(String.valueOf(word).equals("bookcase")){
-                for (String def : wordBookcase) {
-                    Dict.put(String.valueOf(word), def);
-                }
+                Dict.put(String.valueOf(word), wordBookcase);
             }
-            if(String.valueOf(word).equals("CSC220")){
-                for (String def : wordCSC220) {
-                    Dict.put(String.valueOf(word), def);
-                }
+            if(String.valueOf(word).equals("CSC220")) {
+                Dict.put(String.valueOf(word), wordCSC220);
             }
         }
         return Dict;
@@ -97,29 +118,29 @@ public class AMST05 {
         AddBookbinder();
         AddCSC220();
     }
-    static Vector<String> wordBook = new Vector<String>();
-    static Vector<String> wordBookable = new Vector<String>();
-    static Vector<String> wordBookbinder = new Vector<String>();
-    static Vector<String> wordBookcase = new Vector<String>();
-    static Vector<String> wordCSC220 = new Vector<String>();
+    static ListMultimap<String,String> wordBook = ArrayListMultimap.create();
+    static ListMultimap<String,String> wordBookable = ArrayListMultimap.create();
+    static ListMultimap<String,String> wordBookbinder = ArrayListMultimap.create();
+    static ListMultimap<String,String> wordBookcase = ArrayListMultimap.create();
+    static ListMultimap<String,String> wordCSC220 = ArrayListMultimap.create();
 
     public static void AddBook(){
-        wordBook.add("A written work published in printed or electronic form");
-        wordBook.add("To arrange for someone to have a seat on a plane.");
+        wordBook.put("noun","A written work published in printed or electronic form");
+        wordBook.put("verb","To arrange for someone to have a seat on a plane.");
     }
     public static void AddBookable(){
-        wordBookable.add("Can be ordered in advance.");
+        wordBookable.put("adjective","Can be ordered in advance.");
     }
     public static void AddBookbinder(){
-        wordBookbinder.add("A person who fastens the pages of books.");
+        wordBookbinder.put("adjective","A person who fastens the pages of books.");
     }
     public static void AddBookcase(){
-        wordBookcase.add("A piece of furniture with shelves.");
+        wordBookcase.put("noun","A piece of furniture with shelves.");
     }
     public static void AddCSC220(){
-        wordCSC220.add(" Data Structures.");
-        wordCSC220.add("Ready to create complex data structures.");
-        wordCSC220.add("To create data structures.");
+        wordCSC220.put("noun","Data Structures.");
+        wordCSC220.put("adjective","Ready to create complex data structures.");
+        wordCSC220.put("verb","To create data structures.");
     }
 
 }
