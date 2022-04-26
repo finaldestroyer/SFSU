@@ -119,6 +119,7 @@ public class ASMT06 {
         return Dict;
     }
 
+    //Adding word to dictionary
     public static void addWords(){
         AddBook();
         AddBookable();
@@ -126,12 +127,14 @@ public class ASMT06 {
         AddBookbinder();
         AddCSC220();
     }
+    //Word Maps
     static ListMultimap<String,String> wordBook = ArrayListMultimap.create();
     static ListMultimap<String,String> wordBookable = ArrayListMultimap.create();
     static ListMultimap<String,String> wordBookbinder = ArrayListMultimap.create();
     static ListMultimap<String,String> wordBookcase = ArrayListMultimap.create();
     static ListMultimap<String,String> wordCSC220 = ArrayListMultimap.create();
 
+    //Adding Speech and definition to words
     public static void AddBook(){
         wordBook.put("noun","A written work published in printed or electronic form");
         wordBook.put("verb","To arrange for someone to have a seat on a plane.");
